@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -14,7 +15,20 @@ public class App {
         Integer[] data_5000000 = FakeData.generaIntegers(5000000);
 
 
-        InsertionSort insertionSort = new InsertionSort();
-        Worker.executeAndMeasure(insertionSort, data_500000.clone());
+        MergeSort mergeSort = new MergeSort(); 
+        
+        MergeSort2<Integer> sas = new MergeSort2<Integer>(); 
+        List<Integer> l = new ArrayList<>(); 
+        l.add(9);
+        l.add(1);
+        l.add(2);
+        l.add(17); 
+
+        List<Integer> r = sas.mergeSort(l);
+
+        for (Integer integer : r) {
+            System.out.print(integer + " ");
+        }
+
     }
 }
