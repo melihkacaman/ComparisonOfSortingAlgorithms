@@ -2,60 +2,69 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MergeSort implements Sorting {
+
+    @Override
     public <T extends Comparable<T>> void run(T[] list, int size) {
-        var left = new Comparable<T>[list.length / 2];
-        var right = new Comparable[list.length - left.length];
-        
+        mergeSort(list, 0, size - 1);
+    }
+    
+    private <T extends Comparable<T>> void mergeSort(T[] array, int start, int end)
+    {
+        // base case
+        if (start < end)
+        {
+            // find the middle point
+            int middle = (start + end) / 2;
 
-        int center;
-        if (size == 1) {
-            return;
-        } else {
-            center = size / 2;
-            for (int i = 0; i < center; i++) {
-                left[i] = list[i];
-            }
-            for (int i = center; i < size; i++) {               
-                right[i] = list[i];
-            }
+            mergeSort(array, start, middle); // sort first half
+            mergeSort(array, middle + 1, end);  // sort second half
 
-            run(left, left.length);
-            run(right, right.length);
-
-            merge(left, right, list);
+            // merge the sorted halves
+            merge(array, start, middle, end);
         }
     }
 
-    private <T extends Comparable<T>> void merge(Comparable[] left, Comparable[] right, T[] list) {
-        int leftIndex = 0;
-        int rightIndex = 0;
-        int originalIndex = 0;
+    private <T extends Comparable<T>> void merge(T[] array, int start, int middle, int end)
+    {
+        T[] leftArray  = (T[]) new Comparable[middle - start + 1];
+        T[] rightArray = (T[]) new Comparable[end - middle];
 
-        while (leftIndex < left.length && rightIndex < right.length) {
+        // fill in left array
+        for (int i = 0; i < leftArray.length; ++i)
+            leftArray[i] = array[start + i];
 
-            if (left[leftIndex].compareTo(right[rightIndex]) < 0) {
-                // list.set(originalIndex, left.get(leftIndex));
-                list[originalIndex] = left.get(leftIndex);
+        // fill in right array
+        for (int i = 0; i < rightArray.length; ++i)
+            rightArray[i] = array[middle + 1 + i];
+
+        /* Merge the temp arrays */
+
+        // initial indexes of first and second subarrays
+        int leftIndex = 0, rightIndex = 0;
+
+        // the index we will start at when adding the subarrays back into the main array
+        int currentIndex = start;
+
+        // compare each index of the subarrays adding the lowest value to the currentIndex
+        while (leftIndex < leftArray.length && rightIndex < rightArray.length)
+        {
+            if (leftArray[leftIndex].compareTo(rightArray[rightIndex]) <= 0)
+            {
+                array[currentIndex] = leftArray[leftIndex];
                 leftIndex++;
-            } else {
-                // list.set(originalIndex, right.get(rightIndex));
-                list[originalIndex] = right.get(rightIndex);
+            }
+            else
+            {
+                array[currentIndex] = rightArray[rightIndex];
                 rightIndex++;
             }
-            originalIndex++;
+            currentIndex++;
         }
 
-        while (leftIndex < left.size()) {
-            //list.set(originalIndex, left.get(leftIndex));
-            list[originalIndex] = left.get(leftIndex); 
-            originalIndex++;
-            leftIndex++;
-        }
-        while (rightIndex < right.size()) {
-            //list.set(originalIndex, right.get(rightIndex));
-            list[originalIndex] = right.get(rightIndex); 
-            originalIndex++;
-            rightIndex++;
-        }
+        // copy remaining elements of leftArray[] if any
+        while (leftIndex < leftArray.length) array[currentIndex++] = leftArray[leftIndex++];
+
+        // copy remaining elements of rightArray[] if any
+        while (rightIndex < rightArray.length) array[currentIndex++] = rightArray[rightIndex++];
     }
 }

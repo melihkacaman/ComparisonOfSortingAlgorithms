@@ -17,18 +17,8 @@ public class App {
 
         MergeSort mergeSort = new MergeSort(); 
         
-        MergeSort2<Integer> sas = new MergeSort2<Integer>(); 
-        List<Integer> l = new ArrayList<>(); 
-        l.add(9);
-        l.add(1);
-        l.add(2);
-        l.add(17); 
-
-        List<Integer> r = sas.mergeSort(l);
-
-        for (Integer integer : r) {
-            System.out.print(integer + " ");
-        }
-
+        FakeData.showIntegers(data_10);
+        mergeSort.run(data_10, data_10.length);
+        FakeData.showIntegers(data_10);
     }
 }
