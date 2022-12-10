@@ -1,3 +1,5 @@
+package sorting;
+
 public class QuickSortLumuto<T extends Comparable<T>> implements Sorting<T> {
 
     @Override
@@ -33,6 +35,4 @@ public class QuickSortLumuto<T extends Comparable<T>> implements Sorting<T> {
         list[i] = list[j]; 
         list[j] = temp; 
     }
-
-
 }

@@ -1,3 +1,5 @@
+package sorting;
+
 public class SelectionSort<T extends Comparable<T>> implements Sorting<T> {
 
     @Override

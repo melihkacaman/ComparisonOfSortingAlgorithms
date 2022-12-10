@@ -1,3 +1,5 @@
+package sorting;
+
 public class InsertionSort<T extends Comparable<T>> implements Sorting<T> {
     @Override
     public void run(T[] list, int size) {

@@ -1,5 +1,8 @@
-import java.util.ArrayList;
-import java.util.List;
+package main;
+
+import sorting.HeapSort;
+import sorting.QuickSortHoare;
+import sorting.QuickSortLumuto;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -29,21 +32,10 @@ public class App {
         Integer[] data_500000_sorted = FakeData.generateSortedIntegers(500000, false);
         Integer[] data_500000_reverse_sorted = FakeData.generateSortedIntegers(500000, true);
         
-        
-        //Integer[] data_1000000 = FakeData.generateIntegers(1000000);
-        //Integer[] data_5000000 = FakeData.generateIntegers(5000000);
-
-        
-        HeapSort<Integer> heapSort = new HeapSort<>(); 
-        InsertionSort<Integer> insertionSort = new InsertionSort<>(); 
-        MergeSort<Integer> mergeSort = new MergeSort<>(); 
-        SelectionSort<Integer> selectionSort = new SelectionSort<>(); 
-
+        HeapSort<Integer> heapSort = new HeapSort<>();
         QuickSortLumuto<Integer> quickSortLumuto = new QuickSortLumuto<>();
         QuickSortHoare<Integer> quickSortHoare = new QuickSortHoare<>();
 
-        FakeData.showIntegers(data_1000);
-        Worker.executeAndMeasure(quickSortLumuto, data_1000); 
-        FakeData.showIntegers(data_1000);
+        Worker.executeAndMeasure(heapSort, data_500000_reverse_sorted.clone());
     }
 }

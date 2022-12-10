@@ -1,3 +1,5 @@
+package sorting;
+
 public class QuickSortHoare<T extends Comparable<T>> implements Sorting<T> {
 
     @Override
@@ -41,6 +43,4 @@ public class QuickSortHoare<T extends Comparable<T>> implements Sorting<T> {
         list[i] = list[j]; 
         list[j] = temp; 
     }
-
-
 }

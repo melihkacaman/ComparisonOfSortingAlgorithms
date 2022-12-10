@@ -1,3 +1,7 @@
+package main;
+
+import sorting.Sorting;
+
 public class Worker {
     public static <T extends Comparable<T>> void executeAndMeasure(Sorting<T> algorithm, T[] sequence) {
         long startTime = System.nanoTime();
