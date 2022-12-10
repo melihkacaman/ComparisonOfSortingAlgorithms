@@ -1,4 +1,4 @@
-public class QuickSort<T extends Comparable<T>> implements Sorting<T> {
+public class QuickSortLumuto<T extends Comparable<T>> implements Sorting<T> {
 
     @Override
     public void run(T[] list, int size) {
@@ -18,8 +18,7 @@ public class QuickSort<T extends Comparable<T>> implements Sorting<T> {
         T pivot = list[high]; 
 
         int i = low - 1; 
-
-        for (int j = low; j < high - 1; j++) {
+        for (int j = low; j <= high - 1; j++) {
             if(list[j].compareTo(pivot) <= 0){
                 i++; 
                 swap(list, i, j);

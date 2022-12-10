@@ -33,15 +33,17 @@ public class App {
         //Integer[] data_1000000 = FakeData.generateIntegers(1000000);
         //Integer[] data_5000000 = FakeData.generateIntegers(5000000);
 
-        QuickSort<Integer> quickSort = new QuickSort<>();
+        
         HeapSort<Integer> heapSort = new HeapSort<>(); 
         InsertionSort<Integer> insertionSort = new InsertionSort<>(); 
         MergeSort<Integer> mergeSort = new MergeSort<>(); 
         SelectionSort<Integer> selectionSort = new SelectionSort<>(); 
 
+        QuickSortLumuto<Integer> quickSortLumuto = new QuickSortLumuto<>();
+        QuickSortHoare<Integer> quickSortHoare = new QuickSortHoare<>();
 
-        FakeData.showIntegers(data_10);
-        Worker.executeAndMeasure(selectionSort, data_10); 
-        FakeData.showIntegers(data_10);
+        FakeData.showIntegers(data_1000);
+        Worker.executeAndMeasure(quickSortLumuto, data_1000); 
+        FakeData.showIntegers(data_1000);
     }
 }
