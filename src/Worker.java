@@ -1,5 +1,5 @@
 public class Worker {
-    public static <T extends Comparable<T>> void executeAndMeasure(Sorting algorithm, T[] sequence) {
+    public static <T extends Comparable<T>> void executeAndMeasure(Sorting<T> algorithm, T[] sequence) {
         long startTime = System.nanoTime();
         algorithm.run(sequence, sequence.length);
         long elapsedTime = System.nanoTime() - startTime;

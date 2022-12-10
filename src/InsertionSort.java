@@ -1,6 +1,6 @@
-public class InsertionSort implements Sorting {
+public class InsertionSort<T extends Comparable<T>> implements Sorting<T> {
     @Override
-    public <T extends Comparable<T>> void run(T[] list, int size) {
+    public void run(T[] list, int size) {
         int outCounter = 1, inCounter;
         T temp;
         for (; outCounter < size; outCounter++) {

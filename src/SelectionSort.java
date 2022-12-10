@@ -1,7 +1,7 @@
-public class SelectionSort implements Sorting {
+public class SelectionSort<T extends Comparable<T>> implements Sorting<T> {
 
     @Override
-    public <T extends Comparable<T>> void run(T[] list, int size) {
+    public void run(T[] list, int size) {
         for (int i = 0; i < size; i++) {
             int min = i;
             for (int j = i + 1; j < size; j++)
