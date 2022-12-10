@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class MergeSort implements Sorting {
 
     @Override
@@ -10,61 +7,42 @@ public class MergeSort implements Sorting {
     
     private <T extends Comparable<T>> void mergeSort(T[] array, int start, int end)
     {
-        // base case
         if (start < end)
         {
-            // find the middle point
-            int middle = (start + end) / 2;
-
-            mergeSort(array, start, middle); // sort first half
-            mergeSort(array, middle + 1, end);  // sort second half
-
-            // merge the sorted halves
-            merge(array, start, middle, end);
+            int mid = (start + end) / 2;
+            mergeSort(array, start, mid); 
+            mergeSort(array, mid + 1, end); 
+            merge(array, start, mid, end);
         }
     }
 
-    private <T extends Comparable<T>> void merge(T[] array, int start, int middle, int end)
+    private <T extends Comparable<T>> void merge(T[] list, int start, int mid, int end)
     {
-        T[] leftArray  = (T[]) new Comparable[middle - start + 1];
-        T[] rightArray = (T[]) new Comparable[end - middle];
+        T[] left  = (T[]) new Comparable[mid - start + 1];
+        T[] right = (T[]) new Comparable[end - mid];
 
-        // fill in left array
-        for (int i = 0; i < leftArray.length; ++i)
-            leftArray[i] = array[start + i];
+        for (int i = 0; i < left.length; ++i)
+            left[i] = list[start + i];
+        for (int j = 0; j < right.length; ++j)
+            right[j] = list[mid + 1 + j];
 
-        // fill in right array
-        for (int i = 0; i < rightArray.length; ++i)
-            rightArray[i] = array[middle + 1 + i];
-
-        /* Merge the temp arrays */
-
-        // initial indexes of first and second subarrays
-        int leftIndex = 0, rightIndex = 0;
-
-        // the index we will start at when adding the subarrays back into the main array
-        int currentIndex = start;
-
-        // compare each index of the subarrays adding the lowest value to the currentIndex
-        while (leftIndex < leftArray.length && rightIndex < rightArray.length)
+        int leftIdx = 0, rightIdx = 0, currentIdx = start;
+        while (leftIdx < left.length && rightIdx < right.length)
         {
-            if (leftArray[leftIndex].compareTo(rightArray[rightIndex]) <= 0)
-            {
-                array[currentIndex] = leftArray[leftIndex];
-                leftIndex++;
+            if (left[leftIdx].compareTo(right[rightIdx]) <= 0){
+                list[currentIdx] = left[leftIdx];
+                leftIdx++;
             }
-            else
-            {
-                array[currentIndex] = rightArray[rightIndex];
-                rightIndex++;
+            else{
+                list[currentIdx] = right[rightIdx];
+                rightIdx++;
             }
-            currentIndex++;
+            currentIdx++;
         }
 
-        // copy remaining elements of leftArray[] if any
-        while (leftIndex < leftArray.length) array[currentIndex++] = leftArray[leftIndex++];
-
-        // copy remaining elements of rightArray[] if any
-        while (rightIndex < rightArray.length) array[currentIndex++] = rightArray[rightIndex++];
+        while (leftIdx < left.length) 
+            list[currentIdx++] = left[leftIdx++];
+        while (rightIdx < right.length) 
+            list[currentIdx++] = right[rightIdx++];
     }
 }
