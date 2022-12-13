@@ -1,8 +1,7 @@
 package main;
 
-import sorting.HeapSort;
-import sorting.QuickSortHoare;
-import sorting.QuickSortLumuto;
+import sorting.*;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -35,7 +34,14 @@ public class App {
         HeapSort<Integer> heapSort = new HeapSort<>();
         QuickSortLumuto<Integer> quickSortLumuto = new QuickSortLumuto<>();
         QuickSortHoare<Integer> quickSortHoare = new QuickSortHoare<>();
+        SelectionSort<Integer> selectionSort = new SelectionSort<>(); 
+        InsertionSort<Integer> insertionSort = new InsertionSort<>(); 
+        MergeSort<Integer> mergeSort = new MergeSort<>(); 
+        
+        Sorting<Integer>[] sorts = new Sorting[]{quickSortHoare, quickSortLumuto, heapSort, selectionSort, insertionSort, mergeSort};
 
-        Worker.executeAndMeasure(heapSort, data_500000_reverse_sorted.clone());
+        for (Sorting<Integer> sort : sorts) {
+            Worker.executeAndMeasure(sort, data_1000.clone());
+        }
     }
 }
